@@ -1,9 +1,11 @@
-
+import Topbar from "../Layout/Topbar"
+import Navbar from "../Common/Navbar";
 const Header = () => {
   return (
-    <div>
-      
-    </div>
+    <header>
+      <Topbar/>
+      <Navbar/>
+    </header>
   )
 }
 
