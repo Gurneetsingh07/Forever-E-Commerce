@@ -27,22 +27,25 @@ const similarProducts = [
     name: "product 1",
     price: 100,
     images: [{ url: "https://picsum.photos/500/500?random=3" }],
-  }, {
+  },
+  {
     _id: 2,
     name: "product 2",
     price: 100,
     images: [{ url: "https://picsum.photos/500/500?random=4" }],
-  }, {
-    _id: 1,
+  },
+  {
+    _id: 3,
     name: "product 3",
     price: 100,
     images: [{ url: "https://picsum.photos/500/500?random=5" }],
-  }, {
-    _id: 1,
+  },
+  {
+    _id: 4,
     name: "product 4",
     price: 100,
     images: [{ url: "https://picsum.photos/500/500?random=6" }],
-  }, 
+  },
 ];
 
 const ProductDetails = () => {
