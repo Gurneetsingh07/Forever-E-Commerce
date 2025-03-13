@@ -9,14 +9,14 @@ const cart = {
       size: "M",
       color: "Black",
       price: 120,
-      image: "https://piscum.photos/150?random=1",
+      image: "https://picsum.photos/id/237/200/300",
     },
     {
       name: "Stylish Jacket",
       size: "42",
       color: "White",
       price: 75,
-      image: "https://piscum.photos/150?random=2",
+      image: "https://picsum.photos/seed/picsum/200/300",
     },
   ],
   totalPrice: 195,
@@ -49,7 +49,12 @@ const Checkout = () => {
           <h3 className="text-lg mb-4">Contact Details</h3>
           <div className="mb-4">
             <label className="block text-gray-700">Email</label>
-            <input type="email" value="user@example.com" className="w-full p-2 border rounded" disabled />
+            <input
+              type="email"
+              value="user@example.com"
+              className="w-full p-2 border rounded"
+              disabled
+            />
           </div>
           <h3 className="text-lg mb-4">Delivery</h3>
           <div className="mb-4 grid grid-cols-2 gap-4">
@@ -59,7 +64,10 @@ const Checkout = () => {
                 type="text"
                 value={shippingAddress.firstName}
                 onChange={(e) =>
-                  setShippingAddress({ ...shippingAddress, firstName: e.target.value })
+                  setShippingAddress({
+                    ...shippingAddress,
+                    firstName: e.target.value,
+                  })
                 }
                 className="w-full p-2 border rounded"
                 required
@@ -71,7 +79,10 @@ const Checkout = () => {
                 type="text"
                 value={shippingAddress.lastName}
                 onChange={(e) =>
-                  setShippingAddress({ ...shippingAddress, lastName: e.target.value })
+                  setShippingAddress({
+                    ...shippingAddress,
+                    lastName: e.target.value,
+                  })
                 }
                 className="w-full p-2 border rounded"
                 required
@@ -84,7 +95,10 @@ const Checkout = () => {
               type="text"
               value={shippingAddress.address}
               onChange={(e) =>
-                setShippingAddress({ ...shippingAddress, address: e.target.value })
+                setShippingAddress({
+                  ...shippingAddress,
+                  address: e.target.value,
+                })
               }
               className="w-full p-2 border rounded"
               required
@@ -97,7 +111,10 @@ const Checkout = () => {
                 type="text"
                 value={shippingAddress.city}
                 onChange={(e) =>
-                  setShippingAddress({ ...shippingAddress, city: e.target.value })
+                  setShippingAddress({
+                    ...shippingAddress,
+                    city: e.target.value,
+                  })
                 }
                 className="w-full p-2 border rounded"
                 required
@@ -109,7 +126,10 @@ const Checkout = () => {
                 type="text"
                 value={shippingAddress.postalCode}
                 onChange={(e) =>
-                  setShippingAddress({ ...shippingAddress, postalCode: e.target.value })
+                  setShippingAddress({
+                    ...shippingAddress,
+                    postalCode: e.target.value,
+                  })
                 }
                 className="w-full p-2 border rounded"
                 required
@@ -122,7 +142,10 @@ const Checkout = () => {
               type="text"
               value={shippingAddress.country}
               onChange={(e) =>
-                setShippingAddress({ ...shippingAddress, country: e.target.value })
+                setShippingAddress({
+                  ...shippingAddress,
+                  country: e.target.value,
+                })
               }
               className="w-full p-2 border rounded"
               required
@@ -134,7 +157,10 @@ const Checkout = () => {
               type="tel"
               value={shippingAddress.phone}
               onChange={(e) =>
-                setShippingAddress({ ...shippingAddress, phone: e.target.value })
+                setShippingAddress({
+                  ...shippingAddress,
+                  phone: e.target.value,
+                })
               }
               className="w-full p-2 border rounded"
               required
@@ -142,14 +168,17 @@ const Checkout = () => {
           </div>
           <div className="mt-6">
             {!checkoutId ? (
-              <button type="submit" className="w-full bg-black text-white py-3 rounded">
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-3 rounded"
+              >
                 Continue to Payment
               </button>
             ) : (
               <div>
                 <h3 className="text-lg mt-4"> Pay with Paypal</h3>
                 <PayPalButton
-                  amount={10.00}
+                  amount={10.0}
                   onSuccess={handlePaymentSuccess}
                   onError={(err) => alert("Payment failed. Try again")}
                 />
@@ -158,9 +187,46 @@ const Checkout = () => {
           </div>
         </form>
       </div>
+      {/* {right section} */}
+      <div className="bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-lg mb-4">Order Summary</h3>
+        <div className="border-t py-4 mb-4">
+          {cart.products.map((product, index) => (
+            <div
+              key={index}
+              className="flex items-start justify-between py-2 border-b"
+            >
+              <div className="flex items-start">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-20 h-24 object-cover mr-4"
+                />
+                <div>
+                  <h3 className="text-md">{product.name}</h3>
+                  <p className="text-gray-500">Size:{product.size}</p>
+                  <p className="text-gray-500">Color:{product.color}</p>
+                </div>
+              </div>
+              <p className="text-xl">${product.price?.toLocaleString()}</p>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-between items-center text-lg mb-4">
+          <p>Subtotal</p>
+          <p>${cart.totalPrice?.toLocaleString()}</p>
+        </div>
+        <div className="flex justify-between items-center text-lg">
+          <p>Shipping</p>
+          <p>Free</p>
+        </div>
+        <div className="flex justify-between items-center text-lg mt-4 border-t pt-4">
+          <p>Total</p>
+          <p>${cart.totalPrice?.toLocaleString()}</p>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Checkout;
-
